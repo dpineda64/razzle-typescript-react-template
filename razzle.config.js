@@ -22,11 +22,9 @@ module.exports = {
       .find((conf) => conf.loader && conf.loader.includes('file-loader'))
       .exclude.push(/\.(graphql|gql)/);
 
-    config.resolve.extensions = config.resolve.extensions.concat([
-      '.ts',
-      '.tsx',
-    ]);
     config.module.rules.push({ test: /\.(ts|tsx)?$/, loader: 'ts-loader' });
+
+    config.resolve.extensions.push('.ts', '.tsx');
 
     config.plugins.push(
       new ForkTSCheckerWebpackPlugin({
@@ -46,8 +44,6 @@ module.exports = {
       ...alias,
       ...config.resolve['alias'],
     };
-
-    config.resolve.extensions.push('.ts', '.tsx');
 
     return config;
   },
