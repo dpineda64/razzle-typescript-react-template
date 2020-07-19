@@ -1,0 +1,4 @@
+{
+  "presets": ["razzle/babel", "@babel/preset-typescript"],
+  "plugins": ["emotion"]
+}
