@@ -3,12 +3,13 @@ declare type GenericObject = {
 };
 
 declare module '*.gql' {
-  import { DocumentNode } from 'graphql';
-
   const value: any;
   export = value;
 }
 
+/**
+ * from: https://duncanleung.com/typescript-module-declearation-svg-img-assets/
+ */
 declare module '\*.svg' {
   import React from 'react';
   export const ReactComponent: React.SFC<React.SVGProps<SVGSVGElement>>;
