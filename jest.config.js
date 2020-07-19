@@ -16,7 +16,7 @@ module.exports = {
     '^.+\\.module\\.(css|sass|scss)$',
   ],
   moduleNameMapper: {
-    '\\.(|css|sass|scss|svg)$': '<rootDir>/src/test/__mocks__/svg-mock.ts',
+    '\\.(|css|sass|scss|svg)$': '<rootDir>/src/test/__mocks__/file-mock.ts',
     '^@components(.*)$': '<rootDir>/src/components$1',
     '^@graphql(.*)$': '<rootDir>/src/graphql$1',
     '^@queries(.*)$': '<rootDir>/src/graphql/queries$1',
