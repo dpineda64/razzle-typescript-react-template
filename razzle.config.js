@@ -2,6 +2,8 @@
 const path = require('path');
 const { resolveTsAliases } = require('resolve-ts-aliases');
 const ForkTSCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const PwaManifest = require('webpack-pwa-manifest');
 
 module.exports = {
   modify: (defaultConfig) => {
@@ -36,7 +38,22 @@ module.exports = {
           configFile: path.resolve('tsconfig.json'),
         },
       }),
+      new PwaManifest({
+        start_url: 'http://localhost:3000?pwa',
+        name: 'Razzle Template',
+        fingerprints: false,
+        publicPath: '/manifest.json',
+      }),
     );
+
+    if (process.env.NODE_ENV === 'production') {
+      config.plugins.push(
+        new WorkboxPlugin.InjectManifest({
+          swSrc: './src/service-worker.ts',
+          exclude: ['server.js', /\.hot-update.*$/],
+        }),
+      );
+    }
 
     const alias = resolveTsAliases(path.resolve('tsconfig.json'));
 
